@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Move Certs
+      shell: "cp pki/ca.crt certs/ ; cp pki/issued/server.crt certs/ ; cp pki/private/server.key certs/ ; cp pki/issued/client1.domain.tld.crt certs/ ; cp pki/private/client1.domain.tld.key certs/"
+    - name: Import Server Certificate
+      shell: "aws acm import-certificate --certificate fileb://certs/server.crt --private-key fileb://certs/server.key --certificate-chain fileb://certs/ca.crt --region us-east-1"
+    - name: Import Client Certificate
+      shell:  "aws acm import-certificate --certificate fileb://certs/client1.domain.tld.crt --private-key fileb://certs/client1.domain.tld.key --certificate-chain fileb://certs/ca.crt --region us-east-1"

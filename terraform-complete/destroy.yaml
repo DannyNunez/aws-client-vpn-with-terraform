@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Destroy Docker Instance
+      shell: "terragrunt destroy -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./docker"
+    - name: Destroy Key-Pair
+      shell: "terragrunt destroy -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./key-pair"
+    - name: Destroy VPC
+      shell: "terragrunt destroy -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./vpc"

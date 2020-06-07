@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Create VPC
+      shell: "terragrunt apply -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./vpc"
+    - name: Create Key-Pair
+      shell: "terragrunt apply -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./key-pair"
+    - name: Create Docker Instance
+      shell: "terragrunt apply -auto-approve --terragrunt-non-interactive --terragrunt-working-dir ./docker"
